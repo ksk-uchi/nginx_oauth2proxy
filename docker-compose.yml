@@ -1,0 +1,33 @@
+version: '2'
+services:
+    nginx_oauth:
+        build:
+            context: ./Nginx/
+        ports:
+            - 80:80
+        links:
+            - oauth2proxy
+            - nginx_general
+            - nginx_team
+        volumes:
+            - ./Nginx/custom_conf/nginx_oauth.conf:/etc/nginx/nginx.conf
+            - ./statics/maintenance:/var/www/maintenance
+    nginx_general:
+        build:
+            context: ./Nginx/
+        links:
+            - oauth2proxy
+        volumes:
+            - ./Nginx/custom_conf/nginx_general.conf:/etc/nginx/nginx.conf
+            - ./Nginx/general:/var/www/general
+    nginx_team:
+        build:
+            context: ./Nginx/
+        links:
+            - oauth2proxy
+        volumes:
+            - ./Nginx/custom_conf/nginx_team.conf:/etc/nginx/nginx.conf
+            - ./Nginx/only_team:/var/www/only_team
+    oauth2proxy:
+        build:
+            context: ./OAuth2Proxy/
