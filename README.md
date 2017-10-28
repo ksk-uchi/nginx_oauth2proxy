@@ -35,12 +35,17 @@ This repo provides boilerplate of combination of those.
 
 ## Start simply
 
-Modify `./OAuth2Proxy/extra_whitelist.txt` first.
+1. Modify `./OAuth2Proxy/extra_whitelist.txt`
 
-It will be passed to `authenticated-emails-file` option. [See here](https://github.com/bitly/oauth2_proxy#command-line-options)
+    1. It will be passed to `authenticated-emails-file` option. [See here](https://github.com/bitly/oauth2_proxy#command-line-options)
 
-After that, you can run this repo with `docker-compose up --buil -d`.
+1. Modify `./OAuth2Proxy/Dockerfile`
+    1. Replace `{your client id}` to the Client ID you got in above preparing.
+    1. Replace `{your client secret string}` to the Client secret you got in above preparing.
+    1. Replace `{your cookie chars whatever you want}` to proper string.
 
-Open `http://localhost` then you can see `./Nginx/general/index.html`
+1. You can run this repo with `docker-compose up --buil -d`.
 
-Open `http://localhost/team/` then you can see `./Nginx/only_team/index.html` after authentication.
+1. Open `http://localhost` then you can see `./Nginx/general/index.html`
+
+1. Open `http://localhost/team/` then you can see `./Nginx/only_team/index.html` after authentication.
